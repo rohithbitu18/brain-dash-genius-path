@@ -2,10 +2,12 @@
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Brain, Camera, BookOpen, BarChart3, Video, PenTool, LogOut, Sparkles } from 'lucide-react';
+import { Brain, Camera, BookOpen, BarChart3, PenTool, LogOut, Sparkles } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
   const { user, signOut } = useAuth();
+  const navigate = useNavigate();
 
   const features = [
     {
@@ -13,42 +15,32 @@ const Dashboard = () => {
       description: "Upload images of math problems for instant AI explanations",
       icon: Camera,
       color: "from-blue-500 to-blue-600",
-      action: "Coming Soon"
-    },
-    {
-      title: "Science Diagrams",
-      description: "AI analysis of charts, graphs, and lab illustrations",
-      icon: BarChart3,
-      color: "from-green-500 to-green-600",
-      action: "Coming Soon"
+      action: "Launch",
+      path: "/snap-solve"
     },
     {
       title: "Smart Notes",
-      description: "Transform YouTube videos into interactive study guides",
-      icon: Video,
+      description: "Transform YouTube videos and text into interactive study guides",
+      icon: BookOpen,
       color: "from-purple-500 to-purple-600",
-      action: "Coming Soon"
+      action: "Launch",
+      path: "/smart-notes"
     },
     {
       title: "Writing Lab",
-      description: "Get real-time feedback on essays and answers",
+      description: "Get real-time AI feedback on essays and written work",
       icon: PenTool,
       color: "from-orange-500 to-orange-600",
-      action: "Coming Soon"
-    },
-    {
-      title: "Mock Tests",
-      description: "AI-generated personalized quizzes that evolve with you",
-      icon: BookOpen,
-      color: "from-red-500 to-red-600",
-      action: "Coming Soon"
+      action: "Launch",
+      path: "/writing-lab"
     },
     {
       title: "Progress Analytics",
-      description: "Visual dashboards showing your strengths and weaknesses",
+      description: "Visual dashboards showing your learning progress and insights",
       icon: BarChart3,
       color: "from-indigo-500 to-indigo-600",
-      action: "Coming Soon"
+      action: "View",
+      path: "/progress-analytics"
     }
   ];
 
@@ -89,13 +81,13 @@ const Dashboard = () => {
           </p>
           <div className="flex items-center justify-center space-x-2 text-yellow-300">
             <Sparkles className="w-5 h-5" />
-            <span className="text-lg">Powered by Gemini AI & GPT-4</span>
+            <span className="text-lg">Powered by Gemini AI</span>
             <Sparkles className="w-5 h-5" />
           </div>
         </div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
           {features.map((feature, index) => {
             const IconComponent = feature.icon;
             return (
@@ -111,8 +103,8 @@ const Dashboard = () => {
                 </CardHeader>
                 <CardContent>
                   <Button
+                    onClick={() => navigate(feature.path)}
                     className={`w-full bg-gradient-to-r ${feature.color} hover:opacity-90 text-white`}
-                    disabled={feature.action === "Coming Soon"}
                   >
                     {feature.action}
                   </Button>
@@ -120,28 +112,6 @@ const Dashboard = () => {
               </Card>
             );
           })}
-        </div>
-
-        {/* Stats Section */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card className="bg-white/10 backdrop-blur-lg border-white/20 text-white text-center">
-            <CardHeader>
-              <CardTitle className="text-3xl font-bold text-blue-300">0</CardTitle>
-              <CardDescription className="text-purple-200">Problems Solved</CardDescription>
-            </CardHeader>
-          </Card>
-          <Card className="bg-white/10 backdrop-blur-lg border-white/20 text-white text-center">
-            <CardHeader>
-              <CardTitle className="text-3xl font-bold text-green-300">0</CardTitle>
-              <CardDescription className="text-purple-200">Study Sessions</CardDescription>
-            </CardHeader>
-          </Card>
-          <Card className="bg-white/10 backdrop-blur-lg border-white/20 text-white text-center">
-            <CardHeader>
-              <CardTitle className="text-3xl font-bold text-yellow-300">0</CardTitle>
-              <CardDescription className="text-purple-200">Mock Tests Taken</CardDescription>
-            </CardHeader>
-          </Card>
         </div>
       </main>
     </div>

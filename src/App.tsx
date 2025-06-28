@@ -7,6 +7,10 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
+import SnapSolve from "./pages/SnapSolve";
+import SmartNotes from "./pages/SmartNotes";
+import WritingLab from "./pages/WritingLab";
+import ProgressAnalytics from "./pages/ProgressAnalytics";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import NotFound from "./pages/NotFound";
 
@@ -31,12 +35,44 @@ const AppRoutes = () => {
         element={user ? <Navigate to="/dashboard" replace /> : <Index />} 
       />
       
-      {/* Protected dashboard route */}
+      {/* Protected routes */}
       <Route
         path="/dashboard"
         element={
           <ProtectedRoute>
             <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/snap-solve"
+        element={
+          <ProtectedRoute>
+            <SnapSolve />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/smart-notes"
+        element={
+          <ProtectedRoute>
+            <SmartNotes />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/writing-lab"
+        element={
+          <ProtectedRoute>
+            <WritingLab />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/progress-analytics"
+        element={
+          <ProtectedRoute>
+            <ProgressAnalytics />
           </ProtectedRoute>
         }
       />
