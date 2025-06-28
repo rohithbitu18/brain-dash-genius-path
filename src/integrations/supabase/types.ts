@@ -9,7 +9,93 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      learning_sessions: {
+        Row: {
+          content: Json | null
+          created_at: string | null
+          duration_minutes: number | null
+          id: string
+          session_type: string
+          user_id: string
+        }
+        Insert: {
+          content?: Json | null
+          created_at?: string | null
+          duration_minutes?: number | null
+          id?: string
+          session_type: string
+          user_id: string
+        }
+        Update: {
+          content?: Json | null
+          created_at?: string | null
+          duration_minutes?: number | null
+          id?: string
+          session_type?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string | null
+          full_name: string | null
+          grade_level: number | null
+          id: string
+          learning_style: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          full_name?: string | null
+          grade_level?: number | null
+          id: string
+          learning_style?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          full_name?: string | null
+          grade_level?: number | null
+          id?: string
+          learning_style?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      progress_tracking: {
+        Row: {
+          correct_answers: number | null
+          created_at: string | null
+          id: string
+          score: number | null
+          subject: string
+          topic: string
+          total_questions: number | null
+          user_id: string
+        }
+        Insert: {
+          correct_answers?: number | null
+          created_at?: string | null
+          id?: string
+          score?: number | null
+          subject: string
+          topic: string
+          total_questions?: number | null
+          user_id: string
+        }
+        Update: {
+          correct_answers?: number | null
+          created_at?: string | null
+          id?: string
+          score?: number | null
+          subject?: string
+          topic?: string
+          total_questions?: number | null
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
